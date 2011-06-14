@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        
+        <base href="http://nitroduna.github.com/git-reference/"/>
+        
+		<title>Git Reference</title>
+		<link rel="stylesheet" type="text/css" href="./css/reset.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="./css/text.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="./css/grid.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="./css/layout.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="./css/nav.css" media="screen" />
+		<!--[if IE 6]><link rel="stylesheet" type="text/css" href="/css/ie6.css" media="screen" /><![endif]-->
+		<!--[if IE 7]><link rel="stylesheet" type="text/css" href="/css/ie.css" media="screen" /><![endif]-->
+		<script type="text/javascript" src="./js/jquery-1.4.1.min.js"></script>
+		<script type="text/javascript" src="./js/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="./js/action.js"></script>
+	</head>
+	<body>
+    <div class="container_12">
+			<div class="grid_12">
+				<span id="branding">Referencia de Git</span>
+      		</div>
+
+			<div class="grid_12">
+				<ul id="menu">
+					<li><a id="menu_home" href="./es/index.html">Referencia</a></li>
+          <!-- <li><a id="menu_cookbook" href="/cookbook.html">Cookbook</a></li> -->
+					<li><a id="menu_about" href="./es/about.html">Acerca de</a></li>
+					<li>&#167;</li>
+					<li><a href="https://github.com/nitroduna/git-reference">Fuentes del Sitio</a></li>
+        </ul>
+        <br/>
+        &nbsp;
+			</div>
+
+			<div class="grid_2" id="reflist">
+          <div class="block">
+            <h3>Obtener y Crear Proyectos</h3>
+            <ul>
+              <li><a href="./es/creating/#init">init</a></li>
+              <li><a href="./es/creating/#clone">clone</a></li>
+            </ul>
+					</div>
+
+          <div class="block">
+            <h3><a href="./es/basic">Snapshotting Básico</a></h3>
+            <ul>
+              <li><a href="./es/basic/#add">add</a></li>
+              <li><a href="./es/basic/#status">status</a></li>
+              <li><a href="./es/basic/#diff">diff</a></li>
+              <li><a href="./es/basic/#commit">commit</a></li>
+              <li><a href="./es/basic/#reset">reset</a></li>
+              <li><a href="./es/basic/#rm-mv">rm, mv</a></li>
+            </ul>
+          </div>
+
+          <div class="block">
+            <h3><a href="./es/branching">Ramas y Mezclas</a></h3>
+            <ul>
+              <li><a href="./es/branching/#branch">branch</a></li>
+              <li><a href="./es/branching/#branch">checkout</a></li>
+              <li><a href="./es/branching/#merge">merge</a></li>
+              <li><a href="./es/branching/#log">log</a></li>
+              <li><a href="./es/branching/#tag">tag</a></li>
+            </ul>
+          </div>
+
+          <div class="block">
+            <h3><a href="./es/remotes">Compartir y Actualizar Proyectos</a></h3>
+            <ul>
+              <li><a href="./es/remotes/#fetch">fetch, pull</a></li>
+              <li><a href="./es/remotes/#push">push</a></li>
+              <li><a href="./es/remotes/#remote">remote</a></li>
+            </ul>
+          </div>
+
+          <div class="block">
+            <h3><a href="./es/inspect">Revisión y Comparación</a></h3>
+            <ul>
+              <li><a href="./es/inspect/#log">log</a></li>
+              <li><a href="./es/inspect/#diff">diff</a></li>
+            </ul>
+          </div>
+
+          <!--
+          <div class="block">
+            <h3><a href="/fixing">Fixing and Changing History</a></h3>
+            <ul>
+              <li><a href="/fixing/rebase.html">rebase</a></li>
+              <li><a href="/fixing/revert.html">revert</a></li>
+              <li><a href="/fixing/checkout.html">checkout</a></li>
+              <li><a href="/fixing/reset.html">reset</a></li>
+              <li><a href="/fixing/cherry-pick.html">cherry-pick</a></li>
+            </ul>
+          </div>
+          -->
+			</div>
+
+      <div class="grid_10 home_box" id="content_box">
+        {{ content }}
+      </div>
+      <div class="clear"></div>
+	</div>
+  </body>
+</html>
