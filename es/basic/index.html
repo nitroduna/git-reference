@@ -6,32 +6,35 @@ layout: es_reference
     <span class="docs">
       <a target="new" href="http://progit.org/book/ch2-2.html">libro</a>
     </span>
-    Snapshotting B&aacute;sico
+    Snapshotting Básico
   </h2>
   <div class="block">
     <p>
-    En Git todo consiste en crear y guardar snapshots de nuestro proyecto, para despu&eacute;s
+    En Git todo consiste en crear y guardar snapshots de nuestro proyecto, para después
     trabajar con estos snapshots o compararlos unos con otros. Este apartado describe
-    los comandos necesarios para construir y grabar los snapshots de nuestro proyecto (commit).
+    los comandos necesarios para construir y grabar los snapshots de nuestro proyecto
+    (commit).
     </p>
+    
     <p>
-    Un concepto importante del snapshotting es que Git mantiene un '&iacute;ndice',
-    que act&uacute;a como una especie de &aacute;rea de montaje (staging area) de nuestro
-    snapshot. Esto nos permite realizar una serie de instantaneas bien construidas
-    desde los ficheros modificados en nuestro directorio de trabajo (working directory),
-    en lugar de tener que realizar de golpe el commit de todos los cambios de los ficheros.
+    Un concepto importante del snapshotting es que Git mantiene un 'índice', que
+    actúa como una especie de área de montaje (staging area) de nuestro snapshot.
+    Esto nos permite realizar una serie de instantaneas bien construidas desde los
+    ficheros modificados en nuestro directorio de trabajo (working directory), en
+    lugar de tener que realizar de golpe el commit de todos los cambios de los ficheros.
     </p>
 
     <p class="nutshell">
     <strong>En resumidas cuentas</strong>, usaremos <code>git add</code> para comenzar
-    con el seguimiento (tracking) de nuevos ficheros, pero tambi&eacute;n para
-    a&ntilde;adir al &aacute;rea de montaje (stage) nuevos cambios  en ficheros
-    que ya se hab&iacute;an a&ntilde;adido, despu&eacute;s usaremos <code>git status</code> y 
-    <code>git diff</code> para examinar lo que ha sido modificado y organizado en
-    el &aacute;rea de montaje, y finalmente usaremos <code>git commit</code> para realizar
-    la grabaci&oacute;n de nuestro snapshot en el historial. Este ser&aacute; el
-    flujo de trabajo b&aacute;sico que estaremos utilizando la mayor parte del tiempo.
+    con el seguimiento (tracking) de nuevos ficheros, pero también para añadir al
+    área de montaje (stage) nuevos cambios en ficheros que ya se habían añadido,
+    después usaremos <code>git status</code> y <code>git diff</code> para examinar
+    lo que ha sido modificado y organizado en el área de montaje, y finalmente usaremos 
+    <code>git commit</code> para realizar la grabación de nuestro snapshot en el historial.
+    Este será el flujo de trabajo básico que estaremos utilizando la mayor parte
+    del tiempo.
     </p>
+    
   </div>
 </div>
 
@@ -42,25 +45,24 @@ layout: es_reference
       <a target="new" href="http://progit.org/book/ch2-2.html#tracking_new_files">libro</a>
     </span>
     <a name="add">git add</a>
-    <span class="desc">a&ntilde;ade el contenido de los ficheros al &aacute;rea de montaje</span>
+    <span class="desc">añade el contenido de los ficheros al área de montaje</span>
   </h2>
 
   <div class="block">
     <p>
-    En Git tenemos que a&ntilde;adir los ficheros a nuestro &aacute;rea de montaje (staging
-    area) antes de que se pueda realizar su commit (grabarlos en un snapshot). Si se trata
-    de un fichero nuevo podemos ejecutar <code>git add</code> para a&ntilde;adirlo por primera
-    vez al staging area, pero incluso cuando el fichero ya lo tenemos &quot;bajo seguimiento&quot; 
-    (tracked) - si por ejemplo ya estaba en nuestro &uacute;ltimo commit - ser&aacute; igualmente 
-    necesario ejecutar <code>git add</code> para a&ntilde;adir las nuevas modificaciones del fichero
-    al staging area. Veamos algunos ejemplos de esto.
+    En Git tenemos que añadir los ficheros a nuestro área de montaje (staging area)
+    antes de que se pueda realizar su commit (grabarlos en un snapshot). Si se trata
+    de un fichero nuevo podemos ejecutar <code>git add</code> para añadirlo por primera
+    vez al staging area, pero incluso cuando el fichero ya lo tenemos "bajo seguimiento" 
+    (tracked) - si por ejemplo ya estaba en nuestro último commit - será igualmente
+    necesario ejecutar <code>git add</code> para añadir las nuevas modificaciones
+    del fichero al staging area. Veamos algunos ejemplos de esto.
     </p>
-   
+    
     <p>
     Volviendo a nuestro ejemplo Hello World, una vez que hemos inicializado el proyecto
-    empezar&iacute;amos a a&ntilde;adir nuestros ficheros y lo har&iacute;amos con
-    <code>git add</code>. Podemos usar <code>git status</code> para ver en que estado
-    est&aacute; nuestro proyecto.
+    empezaríamos a añadir nuestros ficheros y lo haríamos con <code>git add</code>.
+    Podemos usar <code>git status</code> para ver en que estado está nuestro proyecto.
     </p>
   
 <pre>
@@ -69,14 +71,14 @@ layout: es_reference
 <span class="red">??</span> hello.rb
 </pre>
 
-    En este momento tenemos dos ficheros que no est&aacute;n bajo seguimiento
-    (untracked files). Pero podemos a&ntilde;adirlos al staging area.
+    En este momento tenemos dos ficheros que no están bajo seguimiento
+    (untracked files). Pero podemos añadirlos al staging area.
 
 <pre>
 <b>$ git add README hello.rb</b>
 </pre>
     
-    Si ahora ejecutamos de nuevo <code>git status</code>, veremos como han sido a&ntilde;adidos.
+    Si ahora ejecutamos de nuevo <code>git status</code>, veremos como han sido añadidos.
     
 <pre>
 <b>$ git status -s</b>
@@ -84,23 +86,22 @@ layout: es_reference
 <span class="green">A</span>  hello.rb
 </pre>
 
-    <p class="aside">
-    Tambi&eacute;n es habitual a&ntilde;adir recursivamente todos los ficheros de un nuevo
-    proyecto, especificando el directorio de trabajo actual como por ejemplo con <code>git
-    add .</code>. Es decir, Git a&ntilde;adir&aacute; recursivamente todos los ficheros
-    que est&eacute;n dentro del directorio entregado como parametro en el
-    <code>git add</code>, si le entregamos el directorio de trabajo actual, Git 
-    sencillamente comenzar&aacute; el seguimiento (tracking) de todos los ficheros
-    en este directorio. En este ejemplo, un <code>git add .</code> estar&iacute;a
-    haciendo lo mismo que un  <code>git add README hello.rb</code>, y en este caso
-    en particular tambi&eacute;n podr&iacute;amos hacer <code>git add *</code>, pero
-    s&oacute;lo porque  no tenemos subdirectorios en los que el <code>*</code> pueda
-    entrar para a&ntilde;adirlos de forma recursiva.
+		<p class="aside">
+    También es habitual añadir recursivamente todos los ficheros de un nuevo proyecto,
+    especificando el directorio de trabajo actual como por ejemplo con <code>git
+    add .</code>. Es decir, Git añadirá recursivamente todos los ficheros que estén
+    dentro del directorio entregado como parametro en el <code>git add</code>, si
+    le entregamos el directorio de trabajo actual, Git sencillamente comenzará el
+    seguimiento (tracking) de todos los ficheros en este directorio. En este ejemplo,
+    un <code>git add .</code> estaría haciendo lo mismo que un <code>git add README
+    hello.rb</code>, y en este caso en particular también podríamos hacer <code>git
+    add *</code>, pero sólo porque no tenemos subdirectorios en los que el <code>*</code>
+    pueda entrar para añadirlos de forma recursiva.
     </p>
 
     <p>
     Pues bien, si ahora editamos uno de estos ficheros y ejecutamos <code>git
-    status</code> de nuevo, nos encontraremos algo extra&ntilde;o.
+    status</code> de nuevo, nos encontraremos algo extraño.
     </p>
     
 <pre>
@@ -112,29 +113,28 @@ layout: es_reference
 
     <p>
     El estado 'AM' significa que los ficheros han sido modificados en el disco desde
-    la &uacute;ltima vez que fueron a&ntilde;adidos (al staging area). Lo que significa que si 
-    ahora mismo hici&eacute;ramos un commit para crear nuestro snapshot, estar&iacute;amos
-    grabando la versi&oacute;n del fichero que ten&iacute;amos la &uacute;ltima vez
-    que ejecutamos el <code>git add</code>, y no la versi&oacute;n que tenemos en
-    nuestro disco. Git no asume que el fichero tal y como est&aacute; en el disco
-    es lo que queremos a&ntilde;adir a nuestro  snapshot - tenemos que decirselo
-    con el comando <code>git add</code> (aunque ya estuviera a&ntilde;adido).
+    la última vez que fueron añadidos (al staging area). Lo que significa que si 
+    ahora mismo hiciéramos un commit para crear nuestro snapshot, estaríamos grabando 
+    la versión del fichero que teníamos la última vez que ejecutamos el <code>git add</code>, 
+    y no la versión que tenemos en nuestro disco. Git no asume que el fichero tal y como 
+    está en el disco es lo que queremos añadir a nuestro  snapshot - tenemos que decirselo
+    con el comando <code>git add</code> (aunque ya estuviera añadido).
     </p>
       
     <p class="nutshell">
     <strong>En resumidas cuentas</strong>, 
     ejecutamos <code>git add</code> en un fichero cuando queremos incluir en el
     siguiente snapshot - que grabaremos con un commit - cualquier cambio que hayamos
-    realizado en dicho fichero. Cualquier cosa que cambiemos en un fichero y que
-    no se haya a&ntilde;adido con un <code>git add</code> no ser&aacute; inclu&iacute;da
-    en el snapshot - lo que significa que podemos elaborar nuestros snapshots con algo de
-    m&aacute;s precisi&oacute;n que con la mayor&iacute;a de los sistemas SCM.
+    realizado en dicho fichero. Cualquier cosa que cambiemos en un fichero y que no 
+    se haya añadido con un <code>git add</code> no será incluída en el snapshot - lo 
+    que significa que podemos elaborar nuestros snapshots con algo de más precisión 
+    que con la mayoría de los sistemas SCM.
     </p>
 
     <p>
-    Para un ejemplo bastante interesante de como usar esta flexibilidad de a&ntilde;adir
-    al &aacute;rea de montaje (stage) s&oacute;lo partes de ficheros modificados, se puede 
-    consultar la descripci&oacute;n de la opci&oacute;n '-p' de <code>git add</code> en el libro Pro Git.
+    Para un ejemplo bastante interesante de como usar esta flexibilidad de añadir
+    al área de montaje (stage) sólo partes de ficheros modificados, se puede consultar
+    la descripción de la opción '-p' de <code>git add</code> en el libro Pro Git.
     </p>
   </div>
 </div>
@@ -146,18 +146,18 @@ layout: es_reference
       <a target="new" href="http://progit.org/book/ch2-2.html#checking_the_status_of_your_files">libro</a>
     </span>
     <a name="status">git status</a>
-    <span class="desc">estado de los ficheros en el directorio de trabajo y &aacute;rea de montaje</span>
+    <span class="desc">estado de los ficheros en el directorio de trabajo y área de montaje</span>
   </h2>
 
   <div class="block">
     <p>
-    Como vimos en el apartado de <code>git add</code>, para ver el estado de nuestro &aacute;rea de
-    montaje (staging area) compartandolo con el c&oacute;digo en nuestro directorio de trabajo (working
-    directory), podemos ejecutar el comando <code>git status</code>. Lo hemos visto con la opci&oacute;n  
-    <code>-s</code>, que nos proporciona una salida en en formato corto. Sin este flag, el comando <code>git
-    status</code> nos mostrar&aacute; m&aacute;s informaci&oacute;n y algunas peque&ntilde;as ayudas.
-    Veamos las diferencias del informe de estado pero sin la opci&oacute;n <code>-s</code>. La salida de 
-    formato corto tiene la siguiente apariencia:
+    Como vimos en el apartado de <code>git add</code>, para ver el estado de nuestro área de
+    montaje (staging area) compartandolo con el código en nuestro directorio de trabajo (working
+    directory), podemos ejecutar el comando <code>git status</code>. Lo hemos visto con la opción  
+    <code>-s</code>, que nos proporciona una salida en en formato corto. Sin este flag, el comando
+    <code>git status</code> nos mostrará más información y algunas pequeñas ayudas. Veamos las 
+    diferencias del informe de estado pero sin la opción <code>-s</code>. La salida de formato corto
+    tiene la siguiente apariencia:
     </p>
     
 <pre>
@@ -166,7 +166,7 @@ layout: es_reference
 <span class="green">A</span>  hello.rb
 </pre>
 
-    Mientras que la misma informaci&oacute;n en formato largo tiene la siguiente apariencia:
+    Mientras que la misma información en formato largo tiene la siguiente apariencia:
 
 <pre>
 <b>$ git status</b>
@@ -189,14 +189,14 @@ layout: es_reference
 </pre>
 
     <p>
-    Podemos observar que la salida en formato corto es bastante m&aacute;s compacta, en cambio
-    la salida en formato largo ofrece consejos y pistas &uacute;tiles que podr&iacute;amos necesitar
-    a continuaci&oacute;n.
+    Podemos observar que la salida en formato corto es bastante más compacta, en cambio
+    la salida en formato largo ofrece consejos y pistas útiles que podríamos necesitar
+    a continuación.
     </p>
 
     <p>
-    Git tambi&eacute;n nos informar&aacute; sobre ficheros que fueron borrados desde el &uacute;ltimo
-    commit o ficheros  modificados o a&ntilde;adidos al staging area desde nuestro &uacute;ltimo commit.
+    Git también nos informará sobre ficheros que fueron borrados desde el último commit
+    o ficheros  modificados o añadidos al staging area desde nuestro último commit.
     </p>
 
 <pre>
@@ -207,8 +207,8 @@ layout: es_reference
 
     Podemos ver que en el formato corto hay dos columnas. La primera columna es para
     el  staging area, la segunda es para el  working directory. Si por ejemplo tenemos 
-    el fichero README en el staging area y  lo modificamos de nuevo sin ejecutar <code>git
-    add</code> una segunda vez, veremos lo siguiente:
+    el fichero README en el staging area y  lo modificamos de nuevo sin ejecutar 
+    <code>git add</code> una segunda vez, veremos lo siguiente:
 
 <pre>
 <b>$ git status -s</b>
@@ -218,9 +218,9 @@ layout: es_reference
 
     <p class="nutshell">
     <strong>En resumidas cuentas</strong>, 
-    ejecutamos <code>git status</code> para ver si algo ha sido modificado y/o a&ntilde;adido
-    al staging &aacute;rea desde el &uacute;ltimo commit, para que podamos decidir si queremos
-    grabar un nuevo snapshot y lo que grabaremos en &eacute;ste.
+    ejecutamos <code>git status</code> para ver si algo ha sido modificado y/o añadido
+    al staging área desde el último commit, para que podamos decidir si queremos grabar
+    un nuevo snapshot y lo que grabaremos en éste.
     </p>
 
   </div>
@@ -233,31 +233,30 @@ layout: es_reference
       <a target="new" href="http://progit.org/book/ch2-2.html#viewing_your_staged_and_unstaged_changes">libro</a>
     </span>
     <a name="diff">git diff</a>
-    <span class="desc">diferencias de lo a&ntilde;adido al &aacute;rea de montaje y lo modificado pero no 
-    a&ntilde;adido al &aacute;rea de montaje</span>
+    <span class="desc">diferencias de lo añadido al área de montaje y lo modificado pero no 
+    añadido al área de montaje</span>
   </h2>
 
   <div class="block">
     <p>
     Existen dos formas principales de usar el comando <code>git diff</code>. Una de ellas  
-    ser&aacute; descrita en este apartado, pero la otra se explicar&aacute; m&aacute;s
-    adelante en el apartado <a href="./es/inspect">"Revisi&oacute;n y Comparaci&oacute;n"</a>.
-    El sistema que vamos a usar en este apartado sirve para mostrar cambios de lo a&ntilde;adido
-    al &aacute;rea de montaje o lo que se ha modificado en el disco pero no se ha a&ntilde;adido
-    a dicho &aacute;rea de montaje.
+    será descrita en este apartado, pero la otra se explicará más adelante en el apartado
+    <a href="./es/inspect">"Revisión y Comparación"</a>. El sistema que vamos a usar en 
+    este apartado sirve para mostrar cambios de lo añadido al área de montaje o lo que se
+    ha modificado en el disco pero no se ha añadido a dicho área de montaje.
     </p>  
 
     <h4>
       git diff
-      <small>diferencias de  cambios no a&ntilde;adidos al &aacute;rea de montaje
+      <small>diferencias de  cambios no añadidos al área de montaje
       (unstaged changes)</small>
     </h4>
 
     <p>
-    Sin ning&uacute;n argumento adicional, un simple <code>git diff</code> mostrar&aacute; en
-    el formato diff unificado (un parche) qu&eacute; c&oacute;digo o contenido ha sido cambiado 
-    en nuestro proyecto desde el &uacute;ltimo commit y que aun no ha sido a&ntilde;adido al
-    staging area para la creaci&oacute;n del snapshot en el siguiente commit.
+    Sin ningún argumento adicional, un simple <code>git diff</code> mostrará en
+    el formato diff unificado (un parche) qué código o contenido ha sido cambiado 
+    en nuestro proyecto desde el último commit y que aun no ha sido añadido al
+    staging area para la creación del snapshot en el siguiente commit.
     </p>
 
 <pre>
@@ -281,27 +280,25 @@ index d62ac43..8d15d50 100644
 </pre>
 
     <p>
-    Mientras que <code>git status</code> mostrar&aacute; los ficheros que han
-    sido cambiados y/o a&ntilde;adidos al staging area desde nuestro &uacute;ltimo
-    commit, <code>git diff</code> mostrar&aacute; cuales son realmente esos cambios,
-    l&iacute;nea a l&iacute;nea Por lo general se trata de un buen comando para &quot;
-    siempre ejecutar despues&quot; de un  <code>git status</code>.
+    Mientras que <code>git status</code> mostrará los ficheros que han sido cambiados 
+    y/o añadidos al staging area desde nuestro último commit, <code>git diff</code> 
+    mostrará cuales son realmente esos cambios, línea a línea Por lo general se trata
+    de un buen comando para "siempre ejecutar despues" de un <code>git status</code>.
     </p>
 
     <h4>
       git diff --cached 
-      <small>diferencias de  cambios a&ntilde;adidos al &aacute;rea
+      <small>diferencias de  cambios añadidos al área
       de montaje (staged changes)</small>
     </h4>
 
     <p>
-    El comando <code>git diff --cached</code> mostrar&aacute; los contenidos que han sido
-    a&ntilde;adidos al &aacute;rea de montaje (staged). Es decir, mostrar&aacute; lo
-    cambios que ir&aacute;n en el snapshot que se guardar&aacute; con el siguiente
-    commit. De esta forma, si fueramos a a&ntilde;adir al staging area los cambios
-    del fichero <code>hello.rb</code> del ejemplo de arriba, <code>git diff</code> por si
-    mismo no mostrar&aacute; ninguna salida, ya que s&oacute;lo mostrar&aacute; lo que
-    <i>aun no</i> ha sido a&ntilde;adido al &aacute;rea de montaje.
+    El comando <code>git diff --cached</code> mostrará los contenidos que han sido
+    añadidos al área de montaje (staged). Es decir, mostrará lo cambios que irán en
+    el snapshot que se guardará con el siguiente commit. De esta forma, si fueramos
+    a añadir al staging area los cambios del fichero <code>hello.rb</code> del ejemplo
+    de arriba, <code>git diff</code> por si mismo no mostrará ninguna salida, ya que 
+    sólo mostrará lo que <i>aun no</i> ha sido añadido al área de montaje.
     </p>
 
 <pre>
@@ -314,7 +311,7 @@ index d62ac43..8d15d50 100644
 <b>$ </b>
 </pre>
 
-    <p>Para ver los cambios a&ntilde;adidos al &aacute;rea de montaje, podemos ejecutar  
+    <p>Para ver los cambios añadidos al área de montaje, podemos ejecutar  
     <code>git diff --cached</code> en su lugar.</p>
 
 <pre>
@@ -340,19 +337,18 @@ index d62ac43..8d15d50 100644
 
     <h4>
       git diff HEAD
-      <small>diferencias de todos los cambios a&ntilde;adidos o no a&ntilde;adidos al 
-      &aacute;rea de montaje (staged or unstaged changes)</small>
+      <small>diferencias de todos los cambios añadidos o no añadidos al 
+      área de montaje (staged or unstaged changes)</small>
     </h4>
 
     <p>
-    Si queremos ver ambos cambios juntos, tanto los a&ntilde;adidos como los no
-    a&ntilde;adidos al &aacute;rea de montaje, podemos ejecutar <code>git diff HEAD</code>
-    - lo que b&aacute;sicamente significa que queremos ver las diferencias entre nuestro 
-    directorio de trabajo y el &uacute;ltimo commit, ignorando el &aacute;rea de montaje. 
-    Si hacemos cualquier otro cambio a nuestro fichero <code>hello.rb</code> tendremos 
-    algunos cambios en el &aacute;rea de montaje y otros cambios fuera del &aacute;rea 
-    de montaje. Aqu&iacute; podemos ver lo que los tres comandos <code>diff</code> mostraran
-    en este escenario:
+    Si queremos ver ambos cambios juntos, tanto los añadidos como los no añadidos al área 
+    de montaje, podemos ejecutar <code>git diff HEAD</code> - lo que básicamente significa
+    que queremos ver las diferencias entre nuestro directorio de trabajo y el último commit,
+    ignorando el área de montaje. Si hacemos cualquier otro cambio a nuestro fichero 
+    <code>hello.rb</code> tendremos algunos cambios en el área de montaje y otros cambios 
+    fuera del área de montaje. Aquí podemos ver lo que los tres comandos <code>diff</code>
+    mostraran en este escenario:
     </p>
     
 <pre>
@@ -408,10 +404,10 @@ index 2aabb6e..2ae9ba4 100644
     </h4>
 
     <p>
-    Si no queremos un listado completo de diferencias, pero queremos m&aacute;s de lo que nos ofrece
-    el comando <code>git status</code>, podemos usar la opci&oacute;n <code>--stat</code>, la
-    cual nos muestra un resumen en su lugar. Aqu&iacute; podemos ver el mismo ejemplo de
-    arriba, pero usando la opci&oacute;n <code>--stat</code>. 
+    Si no queremos un listado completo de diferencias, pero queremos más de lo que nos ofrece
+    el comando <code>git status</code>, podemos usar la opción <code>--stat</code>, la cual 
+    nos muestra un resumen en su lugar. Aquí podemos ver el mismo ejemplo de arriba, pero 
+    usando la opción <code>--stat</code>. 
     </p>
     
 <pre>
@@ -429,16 +425,16 @@ index 2aabb6e..2ae9ba4 100644
 </pre>
 
     <p>
-    Tambi&eacute;n podemos proporcionar una ruta de  fichero al final de cualquiera
-    de estas opciones, para limitar la salida del comando <code>diff</code> a un
-    fichero o subdirectorio espec&iacute;fico.
+    También podemos proporcionar una ruta de  fichero al final de cualquiera de estas
+    opciones, para limitar la salida del comando <code>diff</code> a un fichero o 
+    subdirectorio específico.
     </p>
 
     <p class="nutshell">
     <strong>En resumidas cuentas</strong>, 
     ejecutamos <code>git diff</code> para mostrar en detalle la salida del comando <code>git
-    status</code> - <i>c&oacute;mo</i> los ficheros han sido modificados o a&ntilde;adidos al
-    &aacute;rea de montaje l&iacute;nea a l&iacute;nea. 
+    status</code> - <i>cómo</i> los ficheros han sido modificados o añadidos al área de montaje
+    línea a línea. 
     </p>
 
   </div>
@@ -451,17 +447,16 @@ index 2aabb6e..2ae9ba4 100644
       <a target="new" href="http://progit.org/book/ch2-2.html#committing_your_changes">libro</a>
     </span>
     <a name="commit">git commit</a>
-    <span class="desc">graba un snapshot del &aacute;rea de montaje</span>
+    <span class="desc">graba un snapshot del área de montaje</span>
   </h2>
 
   <div class="block">
 
     <p>
-    Una vez que hemos a&ntilde;adido al &aacute;rea de montaje, con el comando 
-    <code>git add</code>, el contenido que queremos grabar en un  snapshot,
-    podemos ejecutar <code>git commit</code> para finalmente grabarlo.
-    Git graba nuestro nombre y direcci&oacute;n de email con cada commit que hacemos,
-    as&iacute; que el primer paso ser&aacute; decirle a Git qu� tiene que usar.
+    Una vez que hemos añadido al área de montaje, con el comando <code>git add</code>,
+    el contenido que queremos grabar en un  snapshot, podemos ejecutar <code>git commit</code> 
+    para finalmente grabarlo. Git graba nuestro nombre y dirección de email con cada commit 
+    que hacemos, así que el primer paso será decirle a Git qué tiene que usar.
     </p>
 
 <pre>
@@ -470,10 +465,10 @@ index 2aabb6e..2ae9ba4 100644
 </pre>
 
     <p>
-    Vamos a poner  en el  &aacute;rea de montaje todos los cambios de nuestro fichero
-    <code>hello.rb</code> para a continuaci&oacute;n hacer el commit.  En este primer
-    ejemplo vamos a usar la opci&oacute;n <code>-m</code> para proporcionar el mensaje
-    del commit directamente en la l&iacute;nea de comando.
+    Vamos a poner  en el  área de montaje todos los cambios de nuestro fichero
+    <code>hello.rb</code> para a continuación hacer el commit.  En este primer
+    ejemplo vamos a usar la opción <code>-m</code> para proporcionar el mensaje
+    del commit directamente en la línea de comando.
     </p>
 
 <pre>
@@ -488,9 +483,8 @@ index 2aabb6e..2ae9ba4 100644
     <p>
     Ahora es cuando hemos grabado el snapshot.  Si ejecutamos <code>git status</code>
     de nuevo, veremos que ahora tenemos un  "directorio de trabajo limpio", lo que
-    significa que no hemos realizado ning&uacute;n cambio desde nuestro &uacute;ltimo
-    commit - en nuestro checkout no tenemos ning&uacute;n trabajo pendiente por incluir
-    en un snapshot.
+    significa que no hemos realizado ningún cambio desde nuestro último commit - en 
+    nuestro checkout no tenemos ningún trabajo pendiente por incluir en un snapshot.
     </p>
 
 <pre>
@@ -500,10 +494,10 @@ nothing to commit (working directory clean)
 </pre>
 
     <p>
-    Si no ponemos la opci&oacute;n <code>-m</code>, Git tratar&aacute; de abrir
-    un editor de texto para que escribamos el mensaje del commit. En <code>vim</code>,
-    que es el editor que se utilizar&aacute; por defecto si no lo hemos modificado
-    en la configuraci&oacute;n, la pantalla tendr&iacute;a el siguiente aspecto:
+    Si no ponemos la opción <code>-m</code>, Git tratará de abrir un editor de texto
+    para que escribamos el mensaje del commit. En <code>vim</code>, que es el editor 
+    que se utilizará por defecto si no lo hemos modificado en la configuración, la
+    pantalla tendría el siguiente aspecto:
     </p>
 
 <pre>
@@ -522,15 +516,15 @@ nothing to commit (working directory clean)
 </pre>
 
     <p>
-    En este punto podemos a&ntilde;adir nuestro verdadero mensaje de commit al principio 
-    del documento. Cualquier l&iacute;nea que empiece por '#' ser&aacute; ignorada
-    - Git pone aqu&iacute; la salida del comando <code>git status</code> para que sirva 
-    como recordatorio de lo que hemos modificado y  a&ntilde;adido al &aacute;rea de montaje.    
+    En este punto podemos añadir nuestro verdadero mensaje de commit al principio 
+    del documento. Cualquier línea que empiece por '#' será ignorada - Git pone aquí
+    la salida del comando <code>git status</code> para que sirva como recordatorio 
+    de lo que hemos modificado y  añadido al área de montaje.    
     </p>
     <p>
     En general, es muy importante escribir buenos mensajes de commit. En proyectos
-    open source, normalmente es una regla escribir nuestro mensaje mas o menos
-    con el siguiente formato:
+    open source, normalmente es una regla escribir nuestro mensaje mas o menos con 
+    el siguiente formato:
     </p>
     
 <pre>
@@ -565,37 +559,34 @@ Further paragraphs come after blank lines.
 ".git/COMMIT_EDITMSG" 25L, 884C written
 </pre>
 
-      <p class="aside">
-      El mensaje de los commits es muy importante. Una buena parte de la potencia de Git reside
-      en esta flexibilidad para fabricar de forma local unos commits que ser&aacute;n compartidos
-      m&aacute;s tarde. Lo que nos proporciona la posibilidad de por ejemplo escribir tres o cuatro
-      commits de cambios sobre l&oacute;gicas separadas, para que nuestro trabajo pueda ser revisado
-      m&aacute;s f&aacute;cilmente por otros colaboradores. Dado que existe una separaci&oacute;n 
-      entre la grabaci&oacute;n (commit) y compartici&oacute;n de esos cambios (push), deber&iacute;amos
-      tomarnos el tiempo necesario para hacer que sea m&aacute;s f&aacute;cil revisar lo que hemos
-      modificado por la gente con la que colaboramos, poniendo cada grupo de cambios l&oacute;gicos en 
-      commits separados y con buenos mensajes de commit, de forma que sea m&aacute;s sencillo
-      ver lo que estamos haciendo y porqu&eacute; lo estamos haciendo.
-      </p>
+    <p class="aside">
+    El mensaje de los commits es muy importante. Una buena parte de la potencia de Git 
+    reside en esta flexibilidad para fabricar de forma local unos commits que serán compartidos
+    más tarde. Lo que nos proporciona la posibilidad de por ejemplo escribir tres o cuatro
+    commits de cambios sobre lógicas separadas, para que nuestro trabajo pueda ser revisado
+    más fácilmente por otros colaboradores. Dado que existe una separación entre la grabación
+    (commit) y compartición de esos cambios (push), deberíamos tomarnos el tiempo necesario para
+    hacer que sea más fácil revisar lo que hemos modificado por la gente con la que colaboramos,
+    poniendo cada grupo de cambios lógicos en commits separados y con buenos mensajes de commit, 
+    de forma que sea más sencillo ver lo que estamos haciendo y porqué lo estamos haciendo.
+    </p>
 
     <h4>
       git commit -a
-      <small>antes de hacer el commit pone en el &aacute;rea de montaje los ficheros
+      <small>antes de hacer el commit pone en el área de montaje los ficheros
       en seguimiento modificados</small>
     </h4>
 
     <p>
-    Si el paso de a&ntilde;adir las modificaciones al &aacute;rea de montaje con
-    el <code>git add</code>  os parece demasiado molesto, Git  permite
-    saltarnos esta parte del flujo de trabajo con la opci&oacute;n  <code>-a</code>.
-    B&aacute;sicamente le dice a Git que ejecute <code>git add</code> en cualquiera
-    de los ficheros que est&aacute;n bajo &quot;seguimiento&quot; (tracked files)
-    - es decir, cualquier fichero que estuviera en nuestro &uacute;ltimo commit
-    y que haya sido modificado. Esto nos permite usar  un flujo de trabajo m&aacute;s
-    parecido al de  Subversion, simplemente editando los ficheros y luego ejecutando
-    <code>git commit -a</code> cuando queremos crear un snapshot de todo lo que ha
-    cambiado. Aun es necesario ejecutar <code>git add</code> para  el
-    seguimiento de nuevos ficheros, pero esto es igual que en Subversion.
+    Si el paso de añadir las modificaciones al área de montaje con el <code>git add</code>
+    os parece demasiado molesto, Git permite saltarnos esta parte del flujo de trabajo con
+    la opción <code>-a</code>. Básicamente le dice a Git que ejecute <code>git add</code> 
+    en cualquiera de los ficheros que están bajo "seguimiento" (tracked files) - es decir, 
+    cualquier fichero que estuviera en nuestro último commit y que haya sido modificado.
+    Esto nos permite usar  un flujo de trabajo más parecido al de  Subversion, simplemente
+    editando los ficheros y luego ejecutando <code>git commit -a</code> cuando queremos
+    crear un snapshot de todo lo que ha cambiado. Aun es necesario ejecutar <code>git add</code>
+    para el seguimiento de nuevos ficheros, pero esto es igual que en Subversion.
     </p>
 
 <pre>
@@ -617,28 +608,28 @@ Further paragraphs come after blank lines.
 </pre>
 
     <p>
-    Daros cuenta de que si no a&ntilde;adimos al &aacute;rea de montaje los cambios
-    y despu&eacute;s ejecutamos <code>git commit</code>, Git simplemente nos mostrar&aacute;
-    la salida del comando <code>git status</code>, recordandonos que no hay nada
-    pendiente en el &aacute;rea de montaje. He resaltado la parte importante de
-    ese mensaje, que dice que no se ha a&ntilde;adido nada que pueda grabarse con
-    un commit. Si usamos la opci&oacute;n <code>-a</code>, a&ntilde;adir&aacute; y
-    realizar&aacute; el commit de todos los cambios de una sola vez.
+    Daros cuenta de que si no añadimos al área de montaje los cambios y después 
+    ejecutamos <code>git commit</code>, Git simplemente nos mostrará la salida 
+    del comando <code>git status</code>, recordandonos que no hay nada pendiente
+    en el área de montaje. He resaltado la parte importante de ese mensaje, que
+    dice que no se ha añadido nada que pueda grabarse con un commit. Si usamos 
+    la opción <code>-a</code>, añadirá y realizará el commit de todos los cambios
+    de una sola vez.
     </p>
 
     <p>
     Con esto ya tenemos completo el flujo de trabajo del snapshotting - hacemos
-    cambios a nuestros ficheros, despu&eacute;s usamos  <code>git add</code> para
-    a&ntilde;adir al &aacute;rea de montaje los ficheros que queremos modificar, 
-    <code>git status</code> y <code>git diff</code> para ver lo que hemos cambiado, 
-    y finalmente  <code>git commit</code> para guardar el snapshot de forma permanente.
+    cambios a nuestros ficheros, después usamos  <code>git add</code> para añadir 
+    al área de montaje los ficheros que queremos modificar, <code>git status</code> 
+    y <code>git diff</code> para ver lo que hemos cambiado, y finalmente  
+    <code>git commit</code> para guardar el snapshot de forma permanente.
     </p>
 
     <p class="nutshell">
     <strong>En resumidas cuentas</strong>, 
     ejecutamos <code>git commit</code> para grabar el snapshot del contenido que
-    hemos a&ntilde;adido al &aacute;rea de montaje. Este snapshot despu&eacute;s podr&aacute; ser
-    utilizado para  comparar, compartir y revertir cambios en caso de que lo necesitemos.
+    hemos añadido al área de montaje. Este snapshot después podrá ser utilizado para
+    comparar, compartir y revertir cambios en caso de que lo necesitemos.
     </p>
 
   </div>
@@ -651,37 +642,35 @@ Further paragraphs come after blank lines.
       <a target="new" href="http://progit.org/book/ch2-4.html#unstaging_a_staged_file">libro</a>
     </span>
     <a name="reset">git reset HEAD</a>
-    <span class="desc">quita del &aacute;rea de montaje los cambios que fueron a&ntilde;adidos</span>
+    <span class="desc">quita del área de montaje los cambios que fueron añadidos</span>
   </h2>
 
   <div class="block">
     <p>
-    <code>git reset</code> es probablemente el comando m&aacute;s confuso alguna
-    vez escrito por seres humanos. He usado Git durante a&ntilde;os, incluso
-      escrito un libro sobre Git y aun a veces me sigue confundiendo lo que realmente
-      va a realizar. Por lo tanto tan s&oacute;lo os voy a contar las tres invocaciones
-      especificas de este comando que suelen ser  m&aacute;s &uacute;tiles y que
-      os recomendar&iacute;a simplemente usar a ciegas tal y como yo hago - lo que
-      puede que sea  m&aacute;s &uacute;til. 
+    <code>git reset</code> es probablemente el comando más confuso alguna
+    vez escrito por seres humanos. He usado Git durante años, incluso escrito
+    un libro sobre Git y aun a veces me sigue confundiendo lo que realmente va
+    a realizar. Por lo tanto tan sólo os voy a contar las tres invocaciones
+    especificas de este comando que suelen ser  más útiles y que os recomendaría
+    simplemente usar a ciegas tal y como yo hago - lo que puede que sea  más útil. 
     </p>
     <p>
-      En este caso, vamos a usarlo para eliminar del &aacute;rea de montaje algo que
-      accidentalmente hemos a&ntilde;adido. Supongamos que hemos modificado dos ficheros
-      y queremos grabarlos en dos commits diferentes. Deber&iacute;amos a&ntilde;adir
-      al &aacute;rea de montaje y hacer el commit de uno de ellos, y despu&eacute;s repetir
-      lo mismo con el otro. Si accidentalmente a&ntilde;adimos los dos al &aacute;rea
-      de montaje, &iquest;como podemos quitar  uno de ellos? 
-      Lo hacemos con <code>git reset HEAD -- fichero</code>. T&eacute;cnicamente aqu&iacute;
-      no es necesario a&ntilde;adir el  <code>--</code> - se usa para decirle a  Git
-      que termina el listado de opciones y empieza el listado de rutas de ficheros,
-      pero es bueno habituarse a usarlo para separar las opciones de los
-      ficheros incluso aunque no sea necesario.
+    En este caso, vamos a usarlo para eliminar del área de montaje algo que
+    accidentalmente hemos añadido. Supongamos que hemos modificado dos ficheros
+    y queremos grabarlos en dos commits diferentes. Deberíamos añadir al área de 
+    montaje y hacer el commit de uno de ellos, y después repetir lo mismo con el
+    otro. Si accidentalmente añadimos los dos al área de montaje, ¿como podemos 
+    quitar uno de ellos? Lo hacemos con <code>git reset HEAD -- fichero</code>.
+    Técnicamente aquí no es necesario añadir el <code>--</code> - se usa para 
+    decirle a Git que termina el listado de opciones y empieza el listado de 
+    rutas de ficheros, pero es bueno habituarse a usarlo para separar las opciones 
+    de los ficheros incluso aunque no sea necesario.
     </p>
 
     <p>
-    Bien, veamos los pasos para quitar algo del &aacute;rea de montaje. Tenemos dos
-    ficheros que han sido modificados desde nuestro &uacute;ltimo commit. A&ntilde;adiremos
-    ambos al &aacute;rea de montaje y a continuaci&oacute;n sacaremos uno de ellos.
+    Bien, veamos los pasos para quitar algo del área de montaje. Tenemos dos
+    ficheros que han sido modificados desde nuestro último commit. Añadiremos
+    ambos al área de montaje y a continuación sacaremos uno de ellos.
     </p>
 
 <pre>
@@ -701,37 +690,33 @@ M hello.rb
 </pre>
 
     <p>
-    Si ahora ejecutamos <code>git commit</code> s&oacute;lo se grabar&aacute;n los cambios 
-    del fichero <code>README</code>, y no los <code>hello.rb</code> que ya no est&aacute;
-    en el &aacute;rea de montaje.
+    Si ahora ejecutamos <code>git commit</code> sólo se grabarán los cambios del fichero
+    <code>README</code>, y no los <code>hello.rb</code> que ya no está en el área de montaje.
     </p>
 
     <p class="aside">
     Para satisfacer vuestra curiosidad, lo que realmente estamos haciendo aqui es
-    reinicializar la suma de comprobaci&oacute;n (checksum) de la entrada de ese fichero
-    en el "&iacute;ndice" para que figure con lo que ten&iacute;a en su  &uacute;ltimo
-    commit. A si que <code>git add</code> calcula una suma de comprobaci&oacute;n (checksum)
-    de un fichero y lo a&ntilde;ade al  "&iacute;ndice", y <code>git reset HEAD</code> lo 
-    sobreescribe con lo que hab&iacute;a antes, y por tanto quit&aacute;ndolo del &aacute;rea 
-    de montaje.
+    reinicializar la suma de comprobación (checksum) de la entrada de ese fichero
+    en el "índice" para que figure con lo que tenía en su  último commit. A si que
+    <code>git add</code> calcula una suma de comprobación (checksum) de un fichero
+    y lo añade al  "índice", y <code>git reset HEAD</code> lo sobreescribe con lo 
+    que había antes, y por tanto quitándolo del área de montaje.
     </p>
 
     <p class="tip">
-    Si quisi&eacute;ramos simplemente poder ejecutar un  <code>git unstage</code>,
-    podemos configurar f&aacute;cilmente un alias  en Git.  Tan solo ejecutamos   
-    <code>git config --global alias.unstage "reset HEAD"</code>. Una vez hemos 
-    configurado esto, podemos ejecutar <code>git unstage [file]</code>en lugar
-    del <code>git reset</code>.
+    Si quisiéramos simplemente poder ejecutar un  <code>git unstage</code>, podemos
+    configurar fácilmente un alias en Git. Tan solo ejecutamos 
+    <code>git config --global alias.unstage "reset HEAD"</code>. 
+    Una vez hemos configurado esto, podemos ejecutar <code>git unstage [file]</code>
+    en lugar del <code>git reset</code>.
     </p>
 
     <p>
-    En caso de que olvidemos  el comando para quitar algo del &aacute;rea
-    de montaje, Git nos ayuda recordandolo en la salida del <code>git
-    status</code>.
-    Por ejemplo, si ejecutamos <code>git status</code> sin el <code>-s</code> despu&eacute;s
-    de haber a&ntilde;adido
-    ficheros al &aacute;rea de montaje, Git nos informar&aacute; de como podemos
-    quitarlos de nuevo:
+    En caso de que olvidemos  el comando para quitar algo del área de montaje, 
+    Git nos ayuda recordandolo en la salida del <code>git status</code>.
+    Por ejemplo, si ejecutamos <code>git status</code> sin el <code>-s</code>
+    después de haber añadido ficheros al área de montaje, Git nos informará 
+    de como podemos quitarlos de nuevo:
     </p>
 
 <pre>
@@ -747,8 +732,8 @@ M hello.rb
 
     <p class="nutshell">
     <strong>En resumidas cuentas</strong>, 
-    ejecutamos <code>git reset HEAD</code> para quitar del &aacute;rea de montaje
-    ficheros sobre los que anteriormente hab&iacute;amos ejecutado <code>git add</code>
+    ejecutamos <code>git reset HEAD</code> para quitar del área de montaje
+    ficheros sobre los que anteriormente habíamos ejecutado <code>git add</code>
     y que no queremos incluir en el snapshot con el siguiente commit.
     </p>
 
@@ -762,26 +747,24 @@ M hello.rb
       <a href="http://progit.org/book/ch2-2.html#removing_files">libro</a>
     </span>
     <a name="rm-mv">git rm</a>
-    <span class="desc">borra ficheros del  &aacute;rea de montaje</span>
+    <span class="desc">borra ficheros del  área de montaje</span>
   </h2>
 
   <div class="block">
 
     <p>
-    <code>git rm</code> borrar&aacute; entradas del &aacute;rea de monjate. Esto
-    es un poco diferente al <code>git reset HEAD</code> con el cual "quit&aacute;bamos" 
-    ficheros (unstage). Por "quitar" me refiero a revertir el &aacute;rea de montaje
-     al estado en el que estaba antes de que empezaramos a modificar cosas. En cambio
-    <code>git rm</code> realmente lo echa fuera del &aacute;rea de montaje de forma
-    definitiva, de modo que ya no ser&aacute; incluido en el snapshot con el siguiente
-    commit, lo que al fin y al cabo ser&aacute; un borrado del fichero.
+    <code>git rm</code> borrará entradas del área de monjate. Esto es un poco diferente
+    al <code>git reset HEAD</code> con el cual "quitábamos" ficheros (unstage). Por "quitar"
+    me refiero a revertir el área de montaje al estado en el que estaba antes de que empezaramos
+    a modificar cosas. En cambio <code>git rm</code> realmente lo echa fuera del área de montaje
+    de forma definitiva, de modo que ya no será incluido en el snapshot con el siguiente commit,
+    lo que al fin y al cabo será un borrado del fichero.
     </p>
 
     <p>
-    Por defecto, un  <code>git rm fichero</code> eliminar&aacute; el fichero del
-    &aacute;rea de montaje y tambi&eacute;n de nuestro disco (del directorio de 
-    trabajo). Si queremos dejar el fichero en el directorio de trabajo, podemos usar 
-    <code>git rm --cached</code>.
+    Por defecto, un  <code>git rm fichero</code> eliminará el fichero del área de montaje 
+    y también de nuestro disco (del directorio de trabajo). Si queremos dejar el fichero
+    en el directorio de trabajo, podemos usar <code>git rm --cached</code>.
     </p>
       
     <h4>
@@ -790,32 +773,31 @@ M hello.rb
     </h4>
 
     <p>
-    Al contrario que la mayor&iacute;a de los otros sistemas de control de versiones,
+    Al contrario que la mayoría de los otros sistemas de control de versiones,
     Git no hace el seguimiento del renombrado de ficheros. En su lugar, simplemente
-    realiza el seguimiento de los snapshots averiguando mediante su comparaci&oacute;n
-    que ficheros fueron podr&iacute;an haber sido renombrados. Si un fichero fue
-    eliminado de un snapshot, otro fichero ha sido a&ntilde;adido para el siguiente
-    snapshot y su contenido es similar, Git deduce que es muy probable que
-    sea un fichero renombrado. Por tanto, aunque existe el comando <code>git mv</code>,
+    realiza el seguimiento de los snapshots averiguando mediante su comparación
+    que ficheros fueron podrían haber sido renombrados. Si un fichero fue
+    eliminado de un snapshot, otro fichero ha sido añadido para el siguiente
+    snapshot y su contenido es similar, Git deduce que es muy probable que sea un 
+    fichero renombrado. Por tanto, aunque existe el comando <code>git mv</code>,
     es superfluo - todo lo que hace es un <code>git rm --cached</code>, mover el
-     fichero en el disco, y despu&eacute;s ejecutar un <code>git add</code> sobre
-     el nuevo fichero. En realidad no necesit&aacute;is usarlo, pero si os resulta
-    m&aacute;s facil, sentiros libre de hacerlo.
+    fichero en el disco, y después ejecutar un <code>git add</code> sobre el nuevo
+    fichero. En realidad no necesitáis usarlo, pero si os resulta más facil, sentiros
+    libre de hacerlo.
     </p>
 
     <p class="aside">
     Yo personalmente no uso mucho este comando  en su forma normal - es decir, para
-    borrar ficheros.  Normalmente es simplemente m&aacute;s f&aacute;cil 
-    eliminar los ficheros del disco y despues ejecutar un  <code>git commit -a</code>,
-    que autom&aacute;ticamente tambi&eacute;n los elimina del &quot;indice&quot; o 
-    &aacute;rea de montaje.
+    borrar ficheros.  Normalmente es simplemente más fácil eliminar los ficheros del 
+    disco y despues ejecutar un  <code>git commit -a</code>, que automáticamente también
+    los elimina del "indice" o área de montaje.
     </p>
 
     <p class="nutshell">
     <strong>En resumidas cuentas</strong>, 
-    ejecutamos <code>git rm</code> para eliminar ficheros del &aacute;rea de montaje
-    de forma que dejen de estar bajo seguimiento en Git. Tambi&eacute;n
-    los eliminar&aacute; de nuestro directorio de trabajo.
+    ejecutamos <code>git rm</code> para eliminar ficheros del área de montaje
+    de forma que dejen de estar bajo seguimiento en Git. También los eliminará 
+    de nuestro directorio de trabajo.
     </p>
   </div>
 </div>
