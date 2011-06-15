@@ -7,29 +7,29 @@ layout: es_reference
     <span class="docs">
       <a target="new" href="http://progit.org/book/ch3-0.html">book</a>
     </span>
-    Branching and Merging
+    Ramas y Mezclas
   </h2>
   <div class="block">
-    <p>Branching in Git is one of my favorite features.  If you have used other
-    version control systems, it's probably helpful to forget most of what you
-    think about branches - in fact, it may be more helpful to think of them
-    practically as <i>contexts</i> since that is how you will most often be
-    using them.  When you checkout different branches, you change contexts
-    that you are working in and you can quickly context-switch back and forth
-    between several different branches.
+  	<p>La gestión de ramas (branches) en Git es una de mis funciones favoritas. Si
+    has usado otros sistemas de control de veriones, probablemente sea más práctico 
+    olvidar la mayor parte de lo que sabemos acerca de las ramas - de hecho, puede 
+    que sea más util tratarlas practicamente como si fueran <em>contextos</em> ya que
+    así es como las usaremos la mayor parte del tiempo. Cuando realicemos el checkout
+    de diferentes ramas, estaremos cambiando los contextos en los que estamos 
+    trabajando y podremos cambiar una y otra vez rápidamente entre diferenes ramas.
     </p>
-
+  	
     <p class="nutshell">
-    <b>In a nutshell</b> you can create a branch with
-    <code>git branch (branchname)</code>, switch into that context with
-    <code>git checkout (branchname)</code>, record commit snapshots while
-    in that context, then can switch back and forth easily. When you switch
-    branches, Git replaces your working directory with the snapshot of the
-    latest commit on that branch so you don't have to have multiple directories
-    for multiple branches.  You merge branches together with
-    <code>git merge</code>.  You can easily merge multiple times from the same
-    branch over time, or alternately you can choose to delete a branch
-    immediately after merging it.
+    <strong>En resumidas cuentas</strong>,
+    podemos crear una rama con <code>git branch (branchname)</code>, cambiar a ese
+    contexto con <code>git checkout (branchname)</code>, hacer commit de snapshots
+    mientras estamos en ese contexto, y después cambiar una y otra vez entre ramas
+    de forma sencilla. Cuando cambiamos de rama, Git remplaza nuestro directorio de
+    trabajo con el snapshot del último commit en esa rama, por lo que no necesitamos
+    mantener multimples directorios para múltiples ramas. Mezclamos las ramas con
+    <code>git merge</code>. Podemos mezclar multiples veces desde la misma rama a lo 
+    largo del tiempo y de forma sencilla, o podemos decidir el borrar una rama 
+    inmediatamente después de mezclarla en otra.
     </p>
 
   </div>
@@ -42,7 +42,7 @@ layout: es_reference
       <a target="new" href="http://progit.org/book/ch3-2.html">book</a>
     </span>
     <a name="branch">git branch</a>
-    <span class="desc">list, create and manage working contexts</span>
+    <span class="desc">enumera, crea y gestiona los contextos de trabajo</span>
   </h2>
 
   <br/>
@@ -53,27 +53,26 @@ layout: es_reference
       <a target="new" href="http://progit.org/book/ch3-2.html">book</a>
     </span>
     <a name="checkout">git checkout</a>
-    <span class="desc">switch to a new branch context</span>
+    <span class="desc">cambia a otra rama o contexto de trabajo</span>
   </h2>
 
   <div class="block">
-    <p>The <code>git branch</code> command is a general branch management tool
-    for Git and can do several different things.  We'll cover the basic ones
-    that you'll use most - listing branches, creating branches and deleting
-    branches.  We will also cover basic <code>git checkout</code> here which
-    switches you between your branches.
+  	<p>El comando <code>git branch</code> es una herramienta general para la
+    gestión de las ramas en Git y puede hacer diferentes cosas. Cubriremos las
+    tareas básicas que más frecuentemente usaremos - enumerar las ramas, crear
+    ramas y borrar ramas. También cubriremos lo básico del comando <code>git 
+    checkout</code> que nos permite cambiar entre ramas.
     </p>
 
     <h4>
       git branch
-      <small>list your available branches</small>
+      <small>enumera las ramas disponibles</small>
     </h4>
 
-    <p>Without arguments, <code>git branch</code> will list out the local
-    branches that you have.  The branch that you are currently working on will
-    have a star next to it and if you have
-    <a href="http://progit.org/book/ch7-1.html#colors_in_git">coloring turned on</a>,
-    will show the current branch in green.
+		<p>Sin argumentos, <code>git branch</code> mostrará un listado de las ramas
+    locales que tenemos. La rama en la que actualmente trabajamos tendrá un asterisco
+    a su lado y si tenemos el <a href="http://progit.org/book/ch7-1.html#colors_in_git">
+    coloreado de la consola</a> activo, mostrará la rama actual en verde.
     </p>
 
 <pre>
@@ -81,20 +80,21 @@ $ git branch
 * <span class="green">master</span>
 </pre>
 
-    <p>This means that we have a 'master' branch and we are currently on it.
-    When you run <code>git init</code> it will automatically create a 'master'
-    branch for you by default, however there is nothing special about the name -
-    you don't actually have to have a 'master' branch but since it's the default
-    that is created, most projects do.
+		<p>Esto significa que tenemos una rama llamada 'master' y que actualmente
+    es la que tenemos activa. Cuando ejecutamos <code>git init</code> se crea
+    automáticamente una rama 'master' por defecto, sin embargo su nombre no
+    tiene ningún significado especial - no es necesario tener una rama 'master'
+    pero como es la que se crea por defecto, la mayoría de los proyectos la
+    tienen.
     </p>
 
     <h4>
       git branch (branchname)
-      <small>create a new branch</small>
+      <small>crea una nueva rama</small>
     </h4>
 
-    <p>So let's start by creating a new branch and switching to it.  You can do
-    that by running <code>git branch (branchname)</code>.
+		<p>Bien, vamos a empezar por crear una rama para después cambiar a dicha rama. 
+    Podemos hacer esto ejecutando <code>git branch (branchname)</code>.
 
 <pre>
 $ git branch testing
@@ -103,13 +103,13 @@ $ git branch
   testing
 </pre>
 
-    <p>Now we can see that we have a new branch.  When you create a branch this
-    way it creates the branch at your last commit so if you record some commits
-    at this point and then switch to 'testing', it will revert your working
-    directory context back to when you created the branch in the first place -
-    you can think of it like a bookmark for where you currently are.  Let's see
-    this in action - we use <code>git checkout (branch)</code> to switch the
-    branch we're currently on.
+		<p>Podemos observar que ahora tenemos una nueva rama. Cuando creamos una rama
+    de esta forma se crea en el último commit, por lo que si ahora grabamos algunos
+    commits en este punto y después cambiamos a la nueva rama'testing', se revertirá
+    el contexto de nuestro directorio de trabajo al estado en el que estaba en
+    el momento de haber creado la rama - podemos verlo como si crearamos un
+    un marcador de dónde estamos actualmente. Veamoslo en acción - usamos <code>git 
+    checkout (branch)</code> para cambiar la rama en la que estamos actualmente
     </p>
 
 <pre>
@@ -131,9 +131,9 @@ Switched to branch 'testing'
 README   hello.rb
 </pre>
 
-    <p>So now we can see that when we switch to the 'testing' branch, our new
-    files were removed.  We could switch back to the 'master' branch and see
-    them re-appear.</p>
+		<p>Podemos ver como ahora cuando cambiamos a la rama 'testing', nuestro
+    nuevos ficheros se eliminan. Podemos volver de nuevo a la rama 'master'
+    y ver que vuelven a aparecer.</p>
 
 <pre>
 <b>$ ls</b>
@@ -146,16 +146,17 @@ README   hello.rb more.txt test.txt
 
     <h4>
       git checkout -b (branchname)
-      <small>create and immediately switch to a branch</small>
+      <small>crea y cambia de forma automatica hacia una nueva rama</small>
     </h4>
 
-    <p>
-    In most cases you will be wanting to switch to the branch immediately, so
-    you can do work in it and then merging into a branch that only contains
-    stable work (such as 'master') at a later point when the work in your new
-    context branch is stable.  You can do this pretty easily with
-    <code>git branch newbranch; git checkout newbranch</code>, but Git gives
-    you a shortcut for this: <code>git checkout -b newbranch</code>.
+		<p>
+    En la mayoría de los casos tras crear una rama cambiaremos inmediatemente 
+    hacia ésta, de forma que podamos trabajar sobre ella, para después mezclarla
+    sobre una rama que solo contenga trabajo estable (como la rama 'master'),
+    cuando el trabajo en el nuevo contexto haya alcanzdo un punto estable. Podemos
+    hacer esto de una forma bastante sencilla con <code>git branch newbranch; git 
+    checkout newbranch</code>, aunque Git proporciona atajo para esto: <code>git 
+    checkout -b newbranch</code>.
     </p>
 
 <pre>
@@ -182,11 +183,12 @@ Switched to branch 'master'
 README   hello.rb more.txt test.txt
 </pre>
 
-    <p>You can see there how we created a branch, removed some of our files
-    while in the context of that branch, then switched back to our main branch
-    and we see the files return. Branching safely isolates work that we do into
-    contexts we can switch between.</p>
-
+		<p>En el código anterior podemos obserbar como hemos creado una rama, eliminado
+    algunos de nuestros ficheros mientras estabamos en el contexto de esta nueva
+    rama, depués hemos vuelto a la rama principal y vemos como aparecen de nuevo
+    los ficheros. El sistema de ramas nos aisla de forma segura del trabajo que 
+    realizamos con contextos entre los que podemos cambiar fácilmente.</p>
+    
     <p>
     If you start on work it is very useful to
     always start it in a branch (because it's fast and easy to do) and then
